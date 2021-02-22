@@ -1,0 +1,5 @@
+{
+    "token": "{ Discord Bot Token }",
+    "user": "{ The Snowflake or Member ID of the user to hound }",
+    "guild": "{ The Guild ID to follow this user on }"
+}
