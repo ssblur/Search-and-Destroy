@@ -7,7 +7,7 @@ const client = new discord.Client();
 
 const delay = 250;
 
-var timer;
+let tick, active, lastChannel, timer;
 
 client.once('ready', async function(){
     console.log('Discord bot is ready.');
@@ -16,15 +16,19 @@ client.once('ready', async function(){
     const user = await guild.members.fetch(config.user);
     console.log('Loaded.')
 
-    let tick, active, lastChannel;
 
     active = async () => {
         let channel = user.voice.channel;
         if(channel) {
-            lastChannel = channel;
             try {
-                await channel.join();
-            } catch (e) {}
+                let connection = await channel.join();
+                if(lastChannel != channel.id) {
+                    lastChannel = channel.id;
+                    console.log(`Playing the follow clip... (channel ${channel.id}, from ${lastChannel})`);
+                    connection.play(path.join(__dirname, './follow.mp3'), {volume: 0.7})
+                }
+            } catch (e) { console.log(e); }
+
         } else {
             clearInterval(timer)
             timer = setInterval(tick, delay)
@@ -36,7 +40,7 @@ client.once('ready', async function(){
         let channel = user.voice.channel;
         if(channel) {
             clearInterval(timer)
-            lastChannel = channel;
+            lastChannel = channel.id;
             try {
                 let connection = await channel.join();
                 setTimeout(() => {
