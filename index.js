@@ -41,7 +41,7 @@ client.once('ready', async function(){
                 let connection = await channel.join();
                 setTimeout(() => {
                     console.log('Playing the sound clip...')
-                    connection.play(fileSystem.createReadStream('./sound.mp3'), {volume: 0.7})
+                    connection.play(path.join(__dirname, './sound.mp3'), {volume: 0.7})
                 }, 500);
                 timer = setInterval(active, delay);
             } catch (e) {
