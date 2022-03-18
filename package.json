@@ -9,10 +9,12 @@
   "author": "Patrick Emery",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/opus": "^0.4.0",
-    "discord.js": "^12.5.1",
+    "@discordjs/opus": "*",
+    "@discordjs/voice": "^0.8.0",
+    "discord.js": "^13.6.0",
     "ffmpeg": "0.0.4",
     "ffmpeg-bin": "0.0.1",
-    "ffmpeg-static": "^4.2.7"
+    "ffmpeg-static": "^4.2.7",
+    "tweetnacl": "^1.0.3"
   }
 }
